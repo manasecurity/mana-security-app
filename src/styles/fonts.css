@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'SuisseIntl';
+  font-style: normal;
+  font-weight: normal;
+  src: local('SuisseIntl'), url('../../assets/suisseintl-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SuisseIntl Mono';
+  font-style: normal;
+  font-weight: normal;
+  src: local('SuisseIntl Mono'), url('../../assets/suisseintlmono-regular.woff') format('woff');
+}

@@ -1,0 +1,91 @@
+.risk-status-low {
+  color: #25C448;
+}
+
+.border-risk-status-low {
+  border-color: #25C448;
+}
+
+.bg-risk-status-low {
+  background-color: #25C448;
+}
+
+.risk-status-medium {
+  color: #EE940E;
+}
+
+.border-risk-status-medium {
+  border-color: #EE940E;
+}
+
+.bg-risk-status-medium {
+  background-color: #EE940E;
+}
+
+.risk-status-high {
+  color: #EE360E;
+}
+
+.border-risk-status-high {
+  border-color: #EE360E;
+}
+
+.bg-risk-status-high {
+  background-color: #EE360E;
+}
+
+.risk-status {
+  color: #EE360E;
+  font-size: 96px;
+  line-height: 90%;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+  font-family: "SuisseIntl Mono";
+}
+
+.dashboard {
+  overflow-y: auto;
+}
+
+.border-5px {
+  border-radius: 5px;
+}
+
+.dashboard-item {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+.dashboard-chart {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.dashboard-app-vuln {
+  background-color: white;
+  height: 220px;
+}
+
+.app-risk-high {
+  height: 16px;
+  width: 16px;
+  background-color: #EE5F0E;
+}
+
+.app-risk-medium {
+  height: 12px;
+  width: 12px;
+  background-color: #EE940E;
+}
+
+.app-risk-low {
+  height: 8px;
+  width: 8px;
+  background-color: #25C448;
+}
+
+.min-w-chart {
+  min-width: 2%;
+}

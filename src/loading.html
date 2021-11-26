@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loading...</title>
+    <style>
+      .LoaderWrapper {
+        font-family: sans-serif;
+        font-wight: 700;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+
+        box-sizing: border-box;
+        background-color: #EBEBEB;
+      }
+
+      .spinner {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+      }
+
+      .spinner span {
+        font-size: 1rem;
+        animation: fade 1s linear 0s infinite;
+        padding-right: 1rem;
+      }
+
+      .half-spinner {
+        width: 10px;
+        height: 10px;
+        border: 2px solid black;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 0.5s linear 0s infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .noselect {
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body class="noselect">
+    <div class="LoaderWrapper">
+      <div class="spinner">
+        <span>Starting</span>
+        <div class="half-spinner"></div>
+      </div>
+    </div>
+  </body>
+</html>

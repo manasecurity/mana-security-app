@@ -1,0 +1,95 @@
+@import './fonts.css';
+
+body {
+  position: relative;
+  color: black;
+  height: 100vh;
+  font-family: sans-serif;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: top;
+  align-items: left;
+  font-family: "SuisseIntl";
+  font-style: normal;
+  font-weight: normal;;
+}
+
+.bg-mana-gray {
+  background-color: #ebebeb !important;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  appearance: none;
+  font-size: 1.3rem;
+  transition: transform ease-in 0.1s;
+  cursor: pointer;
+}
+
+button:hover {
+  /* transform: scale(1.05); */
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: #1890ff !important;
+  text-decoration: none;
+  height: fit-content;
+  width: fit-content;
+}
+
+a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.blue {
+  color: #0A40FF !important;
+}
+
+#root {
+  width: 100%;
+}
+
+.ant-tabs-nav {
+  margin-bottom: 0 !important;
+}
+
+.window-header {
+  -webkit-app-region: drag;
+}
+
+.p-20px {
+  padding: 20px;
+}
+
+.m-20px {
+  margin: 20px;
+}
+
+.app-icon-shadow {
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.04))
+          drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.08))
+          drop-shadow(0px 12px 20px rgba(0, 0, 0, 0.08));
+}
+
+.text-black-important {
+  color: #000 !important;
+}
+
+.text-red-important {
+  color: #EE360E !important;
+}
+
+.text-gray-important {
+  color: gray !important;
+}
+
+.capitalize-first-letter:first-letter {
+  text-transform: uppercase;
+}
