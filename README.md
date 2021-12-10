@@ -4,7 +4,7 @@
 
 <p>
 
-[Mana Security](https://www.manasecurity.com) is a vulnerability management tool for macOS. It spots 40k+ vulnerabilities across
+[Mana Security](https://www.manasecurity.com) is a vulnerability management tool for macOS.
 200+ apps. 
 
 </p>
@@ -12,7 +12,7 @@
 
 ## Features
 
-- Continious monitoring of 200+ apps against known and potential vulnerabilities.
+- Continious monitoring of 100+ apps against known and potential vulnerabilities.
 - **Instant** detection of a new vulnerabilities as soon as they appear in public databases (e.g. CVE).
 - Tracks patching velocity and compares it against Mana's community and other benchmarks.
 
