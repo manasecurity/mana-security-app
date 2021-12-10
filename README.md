@@ -5,7 +5,6 @@
 <p>
 
 [Mana Security](https://www.manasecurity.com) is a vulnerability management tool for macOS.
-200+ apps. 
 
 </p>
 
