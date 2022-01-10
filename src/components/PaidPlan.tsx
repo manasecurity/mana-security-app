@@ -14,7 +14,7 @@ const PaidPlan = (props) => {
       <Row gutter={[2, 2]} className="pr-1">
         <Col span={24}>
           <Card className="rounded-md">
-            <p className="text-2xl font-bold pb-8">
+            <p className="text-2xl font-bold pb-2">
               PRO · $59.99/year&nbsp;
               <Image
                 className="mt-1"
@@ -24,10 +24,10 @@ const PaidPlan = (props) => {
                 preview={false}
               />
             </p>
-            <p className="text-base pb-2">Tracks 30,000+ vulnerabilities</p>
-            <p className="text-base pb-2">Supports 1000+ macOS apps</p>
+            <p className="text-base pb-2">Supports 100+ macOS apps</p>
             <p className="text-base pb-2">Priority email support</p>
-            <p className="text-base pb-4">30 days money back guarantee</p>
+            <p className="text-base pb-2">Cancel any time</p>
+            <p className="text-base">No credit card required</p>
             {/* <p>
               <Button
                 disabled
@@ -41,13 +41,12 @@ const PaidPlan = (props) => {
         </Col>
         <Col span={24}>
           <Card className="rounded-md">
-            <p className="text-2xl font-bold pb-8">Community · $0</p>
-            <p className="text-base pb-2">Tracks 4,000+ vulnerabilities</p>
-            <p className="text-base pb-2">Supports 10 macOS apps</p>
-            <p className="text-base pb-4">Email support</p>
+            <p className="text-2xl font-bold pb-2">Community · $0</p>
+            <p className="text-base pb-2">Supports 10 essential macOS apps</p>
+            <p className="text-base pb-8">Email support</p>
 
             <Button
-              className="bg-blue-700 bg-opacity-25 text-blue-700 border-0 w-4/12"
+              className="bg-blue-700 bg-opacity-25 text-blue-700 border-0 w-6/12"
               size="large"
               onClick={switchToFreePlan}
               style={{ background: '#0A40FF14', color: '#0A40FF' }}

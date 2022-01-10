@@ -27,7 +27,7 @@ const subscriptionSlice = createSlice({
   initialState: loadState(SUBSCRIPTION_STATE_SEED),
   reducers: {
     setSubscription(state, { payload }) {
-      return true;
+      console.log('i am a subuscription');
     },
 
     setKey(state, { payload }) {

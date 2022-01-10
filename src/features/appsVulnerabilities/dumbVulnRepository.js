@@ -1,5 +1,3 @@
-//TODO Удалить этот файл
-
 const dumbVulnsRepo = {
   'CVE-2021-0001': {
     cve: 'CVE-2021-0001',

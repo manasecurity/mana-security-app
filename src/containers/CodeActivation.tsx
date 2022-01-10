@@ -1,10 +1,11 @@
-import { Button, Input } from 'antd';
+import { Button, Input, Alert } from 'antd';
 import { ipcRenderer } from 'electron';
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import persistSubscriptionThunk from '../app/persistSubscriptionThunk';
+import syncRepoThunk from '../app/repoThunk';
 import { setKey } from '../features/subscriptionSlice/subscriptionSlice';
 
 const CodeActivation = () => {
@@ -15,6 +16,7 @@ const CodeActivation = () => {
     const newKey = event.target['new-key'].value;
     dispatch(setKey({ key: newKey }));
     dispatch(persistSubscriptionThunk());
+    dispatch(syncRepoThunk(false));
     history.push('/subscription');
   };
 
@@ -28,19 +30,21 @@ const CodeActivation = () => {
         <h1 className="text-6xl">Activate subscription</h1>
       </div>
 
-      <div className="bg-white border-5px mt-2 mr-2 p-4">
+      <div className="bg-white border-5px mr-2 p-4">
         <form onSubmit={setNewKey}>
+          <p className="mb-2">Activation key:</p>
           <Input
             autoFocus
             id="new-key"
-            className="mb-1 mt-4"
-            placeholder="Enter your activation key from the email"
+            className="mb-1"
+            placeholder="40 characters long string"
             size="large"
           />
           <p className="text-gray-400 mb-4">
-            You should receive an activation key after a successful payment. If
-            you did not find the code, check the spam folder or contact us
-            via <a onClick={openSupportUrl}>help@manasecurity.com</a>.
+            You should receive an activation key after a successful payment or
+            trial request. If you did not find the code, check the spam folder
+            or contact us via{' '}
+            <a onClick={openSupportUrl}>help@manasecurity.com</a>.
           </p>
           <Input
             className="bg-opacity-25 border-0 text-base w-6/12 mb-2 cursor-pointer hover:border-0 border-transparent hover:border-transparent"

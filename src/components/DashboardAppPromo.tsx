@@ -18,7 +18,9 @@ const DashboardAppPromo = (props) => {
       <div className="absolute m-20px bottom-0 left-0 right-0">
         <div className="absolute bottom-0 left-0">
           <p className="text-base">{message}</p>
-          <p className="text-base text-gray-300">Upgrade to PRO</p>
+          <p className="text-base text-gray-300">
+            Start a free 14 day trial, no credit card required
+          </p>
         </div>
       </div>
     </div>

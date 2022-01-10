@@ -1,15 +1,15 @@
 import React from 'react';
 import { Col, Image, Row } from 'antd';
+import { Link } from 'react-router-dom';
 
 import greenTickImg from '../../assets/green-tick.svg';
 import DashboardAppPromo from './DashboardAppPromo';
-import { Link } from 'react-router-dom';
 
 const NoVulnsSummary = (props) => {
   const { paid } = props;
   if (!paid) {
     const promoMessage =
-      'Only ten essential apps are supported in FREE plan. Find vulnerabilities for 1000+ apps with PRO subscription';
+      'Only 10 essential apps are covered by Community edition. Find vulnerabilities for 100+ apps with PRO subscription';
     return (
       <div className="mb-0.5">
         <div className="dashboard-item rounded-b-none mb-px mt-1">

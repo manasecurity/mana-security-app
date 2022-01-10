@@ -69,7 +69,7 @@ const AppsWidget = () => {
     renderedVulns = renderedVulns.concat(
       <Col key="promo" span={8}>
         <Link to="/subscription" className="text-black-important">
-          <DashboardAppPromo message="Find vulnerabilities for 1000+ apps with PRO subscription" />
+          <DashboardAppPromo message="Find vulnerabilities for 100+ apps with PRO subscription" />
         </Link>
       </Col>
     );

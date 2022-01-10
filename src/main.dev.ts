@@ -25,6 +25,7 @@ import {
 } from 'electron';
 import Store from 'electron-store';
 import * as Sentry from '@sentry/electron';
+const request = require('request');
 
 import MenuBuilder from './menu';
 import { fetchOsquerySnapshot } from './utils/osquery/osqueryiAsync';
@@ -32,58 +33,48 @@ import statusWriteAsync from './utils/persist/statusAsync';
 import appsVulnsWriteAsync from './utils/persist/appsVulnsAsync';
 import analyticsWriteAsync from './utils/persist/analyticsAsync';
 import subscriptionWriteAsync from './utils/persist/subscriptionAsync';
+import { API_HOST } from './configs';
 
 Store.initRenderer();
+const store = new Store();
 
 Sentry.init({
   dsn: 'https://2b4d70e7f67044b6ad37646d4efe0a81@o934854.ingest.sentry.io/5993134',
 });
 
+let mainWindow: BrowserWindow | null = null;
+
 if (process.env.NODE_ENV === 'production') {
-  const server = 'https://slack.manasecurity.com';
-  const url = `${server}/update/${process.platform}/${
+  const url = `${API_HOST}update/${process.platform}/${
     process.arch
   }/${app.getVersion()}`;
   app.setName('mana-macos');
 
-  console.log(url);
-
   autoUpdater.setFeedURL({ url });
+  console.log(url);
   autoUpdater.checkForUpdates();
 
   setInterval(() => {
+    console.log(url);
     autoUpdater.checkForUpdates();
   }, 10 * 60 * 1000);
 
   autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail:
-        'A new version has been downloaded. Restart the application to apply the updates.',
-    };
-    dialog
-      .showMessageBox(dialogOpts)
-      .then((returnValue) => {
-        if (returnValue.response === 0) {
-          autoUpdater.quitAndInstall();
-        }
-        return 0;
-      })
-      .catch(() => {
-        // return 0;
-      });
+    Sentry.captureMessage("[update] mainWindow is minimized var is: " + mainWindow?.isMinimized());
+    Sentry.captureMessage("[update] mainWindow is destroyed() is: " + mainWindow?.isDestroyed());
+    Sentry.captureMessage("[update] mainWindow is visible() is: " + mainWindow?.isVisible());
+    if (!mainWindow?.isFocused()) {
+      store.set('mainWindowMinimizedOnAutoQuit', true);
+    }
+    autoUpdater.quitAndInstall();
+    // TODO Show a prompt about update in X seconds if the app is focused.
   });
 
-  autoUpdater.on('error', message => {
+  autoUpdater.on('error', (message) => {
     console.error('There was a problem updating the application');
     console.error(message);
   });
 }
-
-let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -139,7 +130,7 @@ const createTray = () => {
     },
     { type: 'separator' },
     {
-      label: 'Quit Mana Security',
+      label: 'Quit Mana Completely',
       click: () => app.quit(),
     },
   ]);
@@ -215,6 +206,24 @@ const createWindow = async () => {
     shell.openExternal('https://buy.manasecurity.com')
   );
 
+  ipcMain.on('url:get-trial-link', (event, values) => { 
+    var payload = JSON.stringify({"email": values.email});
+    console.log(values);
+    const r = request({
+      body: payload,
+      method: 'POST',
+      url: 'https://slack.manasecurity.com/api/v1.0/trial/',
+  }, (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      console.log('Success: \n'+body);
+  } else {
+      console.log("Error: \n"+body);
+  }
+  
+  });
+  
+  });
+
   ipcMain.on('url:send-email-to-support-no-activation-code', () => {
     const subject = encodeURIComponent('Activation code issue');
     const body = encodeURIComponent(`Hey guys,
@@ -241,7 +250,16 @@ Cheers,`);
     //   mainWindow.focus();
     // }
     setTimeout(() => {
-      if (process.env.START_MINIMIZED) {
+      Sentry.captureMessage(
+        `mainWindow is minimized var is: ${store.get(
+          'mainWindowMinimizedOnAutoQuit'
+        )}`
+      );
+      if (
+        process.env.START_MINIMIZED ||
+        store.get('mainWindowMinimizedOnAutoQuit', false)
+      ) {
+        store.delete('mainWindowMinimizedOnAutoQuit');
         mainWindow.minimize();
       } else {
         mainWindow.show();
@@ -291,4 +309,12 @@ app.on('activate', () => {
   } else {
     mainWindow.show();
   }
+let lastAnalSent = store.get("LastAnalSent", null);
+if (lastAnalSent === null) {
+  store.set("LastAnalSent", Date.now())
+  // set first-launch-anal and set-up timer to send-data every-day 
+} else { 
+  store.set("LastAnalSent", Date.now())
+  // set up timer every 10 min to check if lastAnalSent is more than > 24h ago 
+}
 });

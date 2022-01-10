@@ -43,7 +43,7 @@ const VulnerableAppFullInfo = (props) => {
 
       <Row gutter={[2, 2]} className="pr-1">
         <Col span={24}>
-          <Card className="rounded-md">
+          <Card className="rounded-md select-text">
             <p className="text-2xl capitalize-first-letter pb-8">{solution}</p>
             <ReactMarkdown className="text-base capitalize-first-letter whitespace-pre-line pb-4">
               {'*How to install the update:*\n'.concat(howToUpdate)}

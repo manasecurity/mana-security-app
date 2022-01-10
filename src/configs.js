@@ -1,3 +1,5 @@
+export const API_HOST = 'https://slack.manasecurity.com/';
+
 export const ANALYTICS_STATE_SEED = {
   // Next three fields are used both in the interface and CSS classes to display stats.
   overallRisk: 'low',

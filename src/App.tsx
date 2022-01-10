@@ -20,6 +20,7 @@ import osqueryRefreshThunk from './app/osqueryRefreshThunk';
 import syncRepoThunk from './app/repoThunk';
 import Subscription from './containers/Subscription';
 import CodeActivation from './containers/CodeActivation';
+import TrialActivation from "./containers/TrialActivation";
 
 const { Header, Sider, Content } = Layout;
 
@@ -162,6 +163,7 @@ class App extends React.Component {
                   {/* <Route path="/hardening" component={Hardening} /> */}
                   <Route path="/subscription" component={Subscription} />
                   <Route path="/code-activation" component={CodeActivation} />
+                  <Route path="/trial-activation" component={TrialActivation} />
                   <Route path="/debug" component={Debug} />
                 </Switch>
               </Content>

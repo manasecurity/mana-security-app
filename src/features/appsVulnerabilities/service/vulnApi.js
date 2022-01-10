@@ -1,14 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import filterRelevantCVENames from '../../../utils/nvd/filterRelevantCVENames';
 import getCPEName from '../../../utils/nvd/getCPEName';
+import { API_HOST } from '../../../configs';
 
 export const API_POLLING_INTERVAL = 5 * 60 * 1000; // Every 5 minutes we call API endpoints.
 export const QUERY_OPTIONS = { pollingInterval: API_POLLING_INTERVAL };
 
-const manaHostName = 'https://slack.manasecurity.com';
-
 const getUserToken = () => {
-  return '';
+  return 'c682c26fe344473e6efb6f08fedeba3af388ad92';
 };
 
 const transformRepository = (response) => {
@@ -49,7 +48,7 @@ export const vulnApi = createApi({
     // actual tests will execute this method. If this's the case, mock the fetch function.
     fetchFn: typeof fetch === 'function' ? fetch : () => '',
     // TODO: IMPORTANT This endpoint leaks information.
-    baseUrl: `${manaHostName}/api/v1.0/`,
+    baseUrl: `${API_HOST}api/v1.0/`,
     prepareHeaders: (headers) => {
       headers.set('Authorization', `Token ${getUserToken()}`);
       return headers;

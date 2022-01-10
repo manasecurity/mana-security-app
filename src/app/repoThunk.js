@@ -14,10 +14,12 @@ import recalculateAnalytics from '../features/analyticsSlice/utils/recalculateAn
 import { refreshAnalytics } from '../features/analyticsSlice/analyticsSlice';
 import { resetKey } from '../features/subscriptionSlice/subscriptionSlice';
 
+import { API_HOST } from '../configs';
+
 const META_REFETCH_TIMEOUT = 1 * 60 * 1000; // refetch meta files every minute.
 
 const manaAxios = axios.create({
-  baseURL: 'https://slack.manasecurity.com/api/v1.0/',
+  baseURL: `${API_HOST}api/v1.0/`,
   timeout: 30000,
 });
 
@@ -198,7 +200,7 @@ const syncMissingRepo = async (
   }
 };
 
-export default function syncRepoThunk() {
+export default function syncRepoThunk(infinite_run = true) {
   return (dispatch, getState) => {
     console.log('repo sync started');
 
@@ -223,7 +225,13 @@ export default function syncRepoThunk() {
         )
       )
       .then(() => dispatch(setSyncStatus({ inSync: false })))
-      .then(() => restartThunkWithTimeout(dispatch, syncRepoThunk))
+      .then(() => {
+        if (infinite_run) {
+          restartThunkWithTimeout(dispatch, syncRepoThunk);
+        } else {
+          console.log('One-time sync completed.');
+        }
+      })
       .catch((error) => {
         console.log(`meta fetch failure: ${error}`);
         dispatch(setSyncStatus({ inSync: false }));

@@ -95,7 +95,7 @@ const Dashboard = () => {
             </h2>
             <div className="mt-auto w-full lg:w-4/5">
               <p className={`text-2xl mb-1 risk-status-${patchVeloRiskLevel}`}>
-                {secondsToHumanDays(patchVelocity, '~')} · You
+                {secondsToHumanDays(patchVelocity, '>')} · You
               </p>
               <div
                 className={`border-b-2 mb-3 min-w-chart border-risk-status-${patchVeloRiskLevel}`}

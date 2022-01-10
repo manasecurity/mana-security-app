@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, useHistory } from 'react-router-dom';
 
 import { Image } from 'antd';
 
@@ -9,6 +9,8 @@ import backImg from '../../assets/back-arrow.svg';
 const SidebarIcon = () => {
   const { overallRisk } = useSelector((state) => state.analytics);
   const overallRiskLevel = overallRisk;
+
+  const history = useHistory();
 
   return (
     <Switch>
@@ -34,7 +36,7 @@ const SidebarIcon = () => {
         </Link>
       </Route>
       <Route path="/code-activation">
-        <Link to="/subscription">
+        <Link to="#" onClick={history.goBack}>
           <Image
             className="mt-8 pl-2 pt-3"
             width={42}
@@ -44,6 +46,18 @@ const SidebarIcon = () => {
           />
         </Link>
       </Route>
+      <Route path="/trial-activation">
+        <Link to="#" onClick={history.goBack}>
+          <Image
+            className="mt-8 pl-2 pt-3"
+            width={42}
+            height={42}
+            src={backImg}
+            preview={false}
+          />
+        </Link>
+      </Route>
+
     </Switch>
   );
 };
